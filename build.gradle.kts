@@ -26,7 +26,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-batch")
+
+    // Database Migration
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
 
     // Kafka
     implementation("org.springframework.kafka:spring-kafka")
@@ -54,7 +57,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("org.springframework.kafka:spring-kafka-test")
-    testImplementation("org.springframework.batch:spring-batch-test")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
 }
 
