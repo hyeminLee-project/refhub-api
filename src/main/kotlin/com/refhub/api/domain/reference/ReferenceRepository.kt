@@ -29,4 +29,6 @@ interface ReferenceRepository : JpaRepository<Reference, Long> {
     fun findByTagNames(tagNames: List<String>, pageable: Pageable): Page<Reference>
 
     fun existsBySourceAndSourceId(source: ReferenceSource, sourceId: String): Boolean
+
+    fun findBySourceAndSourceId(source: ReferenceSource, sourceId: String): Reference?
 }

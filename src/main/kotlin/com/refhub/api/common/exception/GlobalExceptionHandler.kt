@@ -17,7 +17,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException::class)
     fun handleBusiness(e: BusinessException): ResponseEntity<ApiResponse<Nothing>> =
         ResponseEntity.status(e.status)
-            .body(ApiResponse.error(e.code, e.message ?: "요청을 처리할 수 없습니다."))
+            .body(ApiResponse.error(e.code, e.message))
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleValidation(e: MethodArgumentNotValidException): ResponseEntity<ApiResponse<Nothing>> {
