@@ -1,10 +1,12 @@
 build/
 .gradle/
-!gradle/wrapper/gradle-wrapper.jar
 
 *.class
 *.jar
 *.war
+
+# Gradle wrapper jar must be committed
+!gradle/wrapper/gradle-wrapper.jar
 
 .idea/
 *.iml
