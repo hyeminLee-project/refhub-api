@@ -20,7 +20,10 @@ class ReferenceService(
     private val referenceRepository: ReferenceRepository,
     private val tagRepository: TagRepository,
 ) {
-    @Cacheable(value = ["references"], key = "#request.hashCode()")
+    @Cacheable(
+        value = ["references"],
+        key = "T(java.util.Objects).hash(#request.keyword, #request.source, #request.tags, #request.page, #request.size)",
+    )
     fun search(request: ReferenceSearchRequest): Page<ReferenceResponse> {
         val pageable = PageRequest.of(
             request.page,
@@ -73,9 +76,8 @@ class ReferenceService(
         author: String?,
         tagNames: List<String>,
     ): Reference {
-        if (referenceRepository.existsBySourceAndSourceId(source, sourceId)) {
-            return referenceRepository.findAll()
-                .first { it.source == source && it.sourceId == sourceId }
+        referenceRepository.findBySourceAndSourceId(source, sourceId)?.let {
+            return it
         }
 
         val tags = getOrCreateTags(tagNames)
