@@ -12,7 +12,7 @@ CREATE TABLE tags (
     name VARCHAR(50) NOT NULL UNIQUE
 );
 
-CREATE TABLE references (
+CREATE TABLE reference_items (
     id           BIGSERIAL    PRIMARY KEY,
     title        VARCHAR(500) NOT NULL,
     summary      TEXT,
@@ -26,11 +26,11 @@ CREATE TABLE references (
     CONSTRAINT uq_reference_source_source_id UNIQUE (source, source_id)
 );
 
-CREATE INDEX idx_reference_source     ON references (source);
-CREATE INDEX idx_reference_created_at ON references (created_at);
+CREATE INDEX idx_reference_source     ON reference_items (source);
+CREATE INDEX idx_reference_created_at ON reference_items (created_at);
 
 CREATE TABLE reference_tags (
-    reference_id BIGINT NOT NULL REFERENCES references (id) ON DELETE CASCADE,
+    reference_id BIGINT NOT NULL REFERENCES reference_items (id) ON DELETE CASCADE,
     tag_id       BIGINT NOT NULL REFERENCES tags (id) ON DELETE CASCADE,
     PRIMARY KEY (reference_id, tag_id)
 );
@@ -46,6 +46,6 @@ CREATE TABLE collections (
 
 CREATE TABLE collection_references (
     collection_id BIGINT NOT NULL REFERENCES collections (id) ON DELETE CASCADE,
-    reference_id  BIGINT NOT NULL REFERENCES references (id) ON DELETE CASCADE,
+    reference_id  BIGINT NOT NULL REFERENCES reference_items (id) ON DELETE CASCADE,
     PRIMARY KEY (collection_id, reference_id)
 );

@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(
-    name = "references",
+    name = "reference_items",
     indexes = [
         Index(name = "idx_reference_source", columnList = "source"),
         Index(name = "idx_reference_created_at", columnList = "createdAt"),
