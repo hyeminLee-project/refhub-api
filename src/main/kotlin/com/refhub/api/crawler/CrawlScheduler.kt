@@ -2,9 +2,11 @@ package com.refhub.api.crawler
 
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
 @Component
+@Profile("!test")
 class CrawlScheduler(
     private val arxivCrawler: ArxivCrawler,
     private val gitHubCrawler: GitHubCrawler,
