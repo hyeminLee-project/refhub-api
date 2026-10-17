@@ -3,10 +3,12 @@ package com.refhub.api.crawler
 import com.refhub.api.common.response.ApiResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.context.annotation.Profile
 import org.springframework.web.bind.annotation.*
 
 @Tag(name = "Crawl", description = "크롤링 관리 API (Admin)")
 @RestController
+@Profile("!test")
 @RequestMapping("/api/v1/crawl")
 class CrawlController(
     private val crawlScheduler: CrawlScheduler,

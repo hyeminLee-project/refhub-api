@@ -4,9 +4,11 @@ import com.refhub.api.config.KafkaConfig
 import com.refhub.api.domain.reference.ReferenceService
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.annotation.KafkaListener
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
 @Component
+@Profile("!test")
 class CrawlEventConsumer(
     private val referenceService: ReferenceService,
 ) {

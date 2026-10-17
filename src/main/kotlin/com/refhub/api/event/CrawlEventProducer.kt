@@ -3,9 +3,11 @@ package com.refhub.api.event
 import com.refhub.api.config.KafkaConfig
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
 @Component
+@Profile("!test")
 class CrawlEventProducer(
     private val kafkaTemplate: KafkaTemplate<String, Any>,
 ) {
